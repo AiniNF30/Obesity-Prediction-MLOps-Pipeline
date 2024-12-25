@@ -39,12 +39,12 @@ def model_builder():
     input_features = [
         'Age', 'Bmi', 'Gender', 'PhysicalActivityLevel'
     ]
-    
+
     input_layers = [
         tf.keras.Input(shape=(1,), name=_transformed_name(f), dtype=tf.float32)
         for f in input_features
     ]
-    
+
     concatenated_features = tf.keras.layers.concatenate(input_layers)
     x = layers.Dense(128, activation='relu')(concatenated_features)
     x = layers.BatchNormalization()(x)
@@ -68,7 +68,7 @@ def model_builder():
 def _get_serve_tf_examples_fn(model, tf_transform_output):
     """Create a serving signature for the model."""
     model.tft_layer = tf_transform_output.transform_features_layer()
-    
+
     @tf.function
     def serve_tf_examples_fn(serialized_tf_examples):
         feature_spec = tf_transform_output.raw_feature_spec()
@@ -85,7 +85,7 @@ def run_fn(fn_args: FnArgs) -> None:
 
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, update_freq='batch')
     early_stopping = tf.keras.callbacks.EarlyStopping(
-        monitor='val_sparse_categorical_accuracy', 
+        monitor='val_sparse_categorical_accuracy',
         patience=10
     )
     model_checkpoint = tf.keras.callbacks.ModelCheckpoint(

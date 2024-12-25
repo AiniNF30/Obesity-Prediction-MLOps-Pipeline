@@ -25,9 +25,6 @@ feature {
 feature {
   name: "gender_xf"
   type: INT
-  int_domain {
-    is_categorical: true
-  }
   presence {
     min_fraction: 1.0
   }
@@ -40,9 +37,6 @@ feature {
 feature {
   name: "obesitycategory_xf"
   type: INT
-  int_domain {
-    is_categorical: true
-  }
   presence {
     min_fraction: 1.0
   }
@@ -55,9 +49,6 @@ feature {
 feature {
   name: "physicalactivitylevel_xf"
   type: INT
-  int_domain {
-    is_categorical: true
-  }
   presence {
     min_fraction: 1.0
   }

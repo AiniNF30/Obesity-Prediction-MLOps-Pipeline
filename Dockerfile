@@ -1,4 +1,4 @@
 FROM tensorflow/serving:latest
  
-COPY ./serving_model /models
-ENV MODEL_NAME=obesity_model
+COPY ./serving_model_dir /models
+ENV MODEL_NAME=obesity-model
